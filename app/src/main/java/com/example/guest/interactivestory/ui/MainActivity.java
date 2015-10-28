@@ -19,13 +19,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mNameField = (EditText) findViewById(R.id.nameEditText);
-        mStartButton = (Button) findViewById(R.id.startButton);
+        mNameField = (EditText)findViewById(R.id.nameEditText);
+        mStartButton = (Button)findViewById(R.id.startButton);
 
         mStartButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 String name = mNameField.getText().toString();
+                // Toast.makeText(MainActivity.this. name, Toast.LENGTH_LONG).show();
                 startStory(name);
             }
         });
@@ -35,6 +36,12 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, StoryActivity.class);
         intent.putExtra(getString(R.string.key_name), name);
         startActivity(intent);
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        mNameField.setText("");
     }
 
 }
